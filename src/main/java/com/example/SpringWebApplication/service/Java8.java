@@ -1,12 +1,14 @@
 package com.example.SpringWebApplication.service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Java8 {
     public static void main(String s[]){
-        fabonacciUsingIterator();
+        consumer();
     }
 
     private static void fabonacciUsingSupplier(){
@@ -28,5 +30,17 @@ public class Java8 {
         .map(i-> i[0])
         .collect(Collectors.toList());
         list.forEach(System.out :: println);
+    }
+
+    private static void consumer(){
+        Consumer<String> printingConsumer = new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+            }
+        };
+
+        List<String> strList = Arrays.asList("A", "B", "C");
+        strList.forEach(printingConsumer);
     }
 }
