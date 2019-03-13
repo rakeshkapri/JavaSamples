@@ -1,6 +1,7 @@
 package com.example.SpringWebApplication.service;
 
 import java.util.Arrays;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import java.util.stream.Stream;
 
 public class Java8 {
     public static void main(String s[]){
-        consumer();
+        averageUsingSummaryStatistics();
     }
 
     private static void fabonacciUsingSupplier(){
@@ -42,5 +43,17 @@ public class Java8 {
 
         List<String> strList = Arrays.asList("A", "B", "C");
         strList.forEach(printingConsumer);
+    }
+
+    private static void average(){
+        List<Integer> list = Arrays.asList(1,2,5,6);
+       double average = list.stream().mapToDouble(i->i).average().getAsDouble();
+       System.out.println(average);
+    }
+
+    private static void averageUsingSummaryStatistics(){
+        List<Integer> list = Arrays.asList(1,2,5,6);
+        DoubleSummaryStatistics statistics = list.stream().mapToDouble(i->i).summaryStatistics();
+        System.out.println(statistics.getAverage());
     }
 }
